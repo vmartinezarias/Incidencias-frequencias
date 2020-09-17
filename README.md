@@ -28,14 +28,14 @@ Se asignan los nombres a las listas generadas de cada elemento evaluado (cobertu
 ```{r}
 Comp.inc.freq<-list("VSA"=Cob.1.,"Pastos"=Cob.2.,"Manglar"=Cob.3.,"Tejido urbano"=Cob.4.,"Bosque"=Cob.5.,"TOTAL"=Total)
 str(Comp.inc.freq)
-is(Comp.inc.freq)```
+is(Comp.inc.freq)
 ```
 # Cuarto paso:
 Se procede al cálculo de las curvas de rarefacción-interpolación empleando CHAO2. El "endpoint=70" es el número total de eventos de muestreo generados.
 ```{r}
 Analisis.incidencias.freq <- iNEXT(Comp.inc.freq, q=0, datatype="incidence_freq", se=TRUE, conf=0.95,endpoint = 70)
 Curva.inci.freq<-ggiNEXT(Analisis.incidencias.freq, type=1, se=TRUE, facet.var="none", color.var="site", grey=TRUE)
-Incidence_courves + labs(x = "Eventos de Muestreo", y = "Riqueza de especies") +scale_shape_manual(values=seq(0,16)) + geom_jitter(aes(color = site), size = 1, show.legend = FALSE) + 
+Curva.inci.freq + labs(x = "Eventos de Muestreo", y = "Riqueza de especies") +scale_shape_manual(values=seq(0,16)) + geom_jitter(aes(color = site), size = 1, show.legend = FALSE) + 
   facet_wrap(~ site) + theme(legend.position = "none")
 write.table(Curva.inci.freq["AsyEst"], "indexes.csv", sep="\t") #sacar datos en tabla
 ```
