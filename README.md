@@ -37,7 +37,8 @@ Analisis.incidencias.freq <- iNEXT(Comp.inc.freq, q=0, datatype="incidence_freq"
 Curva.inci.freq<-ggiNEXT(Analisis.incidencias.freq, type=1, se=TRUE, facet.var="none", color.var="site", grey=TRUE)
 Curva.inci.freq + labs(x = "Eventos de Muestreo", y = "Riqueza de especies") +scale_shape_manual(values=seq(0,16)) + geom_jitter(aes(color = site), size = 1, show.legend = FALSE) + 
   facet_wrap(~ site) + theme(legend.position = "none")
-write.table(Curva.inci.freq["AsyEst"], "indexes.csv", sep="\t") #sacar datos en tabla
+write.table(Analisis.incidencias.freq["AsyEst"], "indexes.csv", sep="\t") #sacar datos en tabla
+
 ```
 
 
